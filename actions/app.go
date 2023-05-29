@@ -5,11 +5,9 @@ import (
 	"sync"
 
 	"testing_buffalo/locales"
-	"testing_buffalo/models"
 	"testing_buffalo/public"
 
 	"github.com/gobuffalo/buffalo"
-	"github.com/gobuffalo/buffalo-pop/v3/pop/popmw"
 	"github.com/gobuffalo/envy"
 	"github.com/gobuffalo/middleware/csrf"
 	"github.com/gobuffalo/middleware/forcessl"
@@ -61,11 +59,12 @@ func App() *buffalo.App {
 		// Wraps each request in a transaction.
 		//   c.Value("tx").(*pop.Connection)
 		// Remove to disable this.
-		app.Use(popmw.Transaction(models.DB))
+		// // /// ///app.Use(popmw.Transaction(models.DB))
 		// Setup and use translations:
 		app.Use(translations())
 
 		app.GET("/", HomeHandler)
+		app.GET("/hello", HelloHandler)
 
 		app.ServeFiles("/", http.FS(public.FS())) // serve files from the public directory
 	})

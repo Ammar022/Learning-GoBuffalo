@@ -11,3 +11,8 @@ import (
 func HomeHandler(c buffalo.Context) error {
 	return c.Render(http.StatusOK, r.HTML("home/index.plush.html"))
 }
+
+// HelloPage is Handler for GET /hello
+func HelloHandler(c buffalo.Context) error {
+	return c.Render(http.StatusOK, r.HTML("home/hello.plush.html"))
+}
